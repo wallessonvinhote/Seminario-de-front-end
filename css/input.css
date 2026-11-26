@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* O atributo hidden deve sempre esconder, mesmo em elementos com display:flex */
+  [hidden] { display: none !important; }
+  html { scroll-behavior: smooth; }
+  body { @apply bg-slate-50 text-slate-900 antialiased; }
+  /* Foco sempre visível (WCAG 2.4.7) */
+  :focus-visible { @apply outline-none ring-2 ring-offset-2 ring-brand-600; }
+  h1:focus { outline: none; }
+  @media (prefers-reduced-motion: reduce) {
+    *, ::before, ::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+  }
+}
+
+@layer components {
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold transition disabled:cursor-not-allowed disabled:opacity-60; }
+  .btn-primary { @apply btn bg-brand-700 text-white hover:bg-brand-800; }
+  .btn-secondary { @apply btn border border-slate-300 bg-white text-slate-800 hover:bg-slate-100; }
+  .btn-danger { @apply btn bg-red-700 text-white hover:bg-red-800; }
+  .btn-ghost { @apply btn px-2 py-1 text-brand-700 hover:bg-brand-50; }
+  .btn-ghost-danger { @apply btn px-2 py-1 text-red-700 hover:bg-red-50; }
+
+  .card { @apply rounded-xl border border-slate-200 bg-white p-5 shadow-sm; }
+
+  .label { @apply mb-1 block text-sm font-medium text-slate-800; }
+  .input { @apply block w-full rounded-lg border border-slate-400 bg-white px-3 py-2 text-sm text-slate-900 placeholder-slate-500 read-only:bg-slate-100 disabled:bg-slate-100; }
+  .input[aria-invalid="true"] { @apply border-red-700 bg-red-50; }
+  .field-error { @apply mt-1 min-h-[1.25rem] text-sm font-medium text-red-800; }
+  .field-hint { @apply mt-1 text-xs text-slate-600; }
+
+  .th { @apply whitespace-nowrap bg-slate-100 px-3 py-2 text-left text-xs font-semibold uppercase tracking-wide text-slate-700; }
+  .td { @apply px-3 py-2 align-middle text-sm text-slate-800; }
+
+  .badge { @apply inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-semibold; }
+  .badge-ok { @apply badge bg-emerald-100 text-emerald-900; }
+  .badge-warn { @apply badge bg-amber-100 text-amber-900; }
+  .badge-bad { @apply badge bg-red-100 text-red-900; }
+  .badge-neutral { @apply badge bg-slate-200 text-slate-800; }
+
+  .nav-link { @apply rounded-lg px-3 py-2 text-sm font-medium text-slate-100 hover:bg-white/15; }
+  .nav-link[aria-current="page"] { @apply bg-white text-brand-900; }
+}
+
+@media print {
+  header, nav, footer, .no-print, #toasts { display: none !important; }
+  body { background: #fff; }
+  .card { box-shadow: none; border-color: #999; }
+}

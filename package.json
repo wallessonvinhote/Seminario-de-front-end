@@ -1,0 +1,16 @@
+{
+  "name": "sistema-academico-horizonte",
+  "version": "1.0.0",
+  "description": "Sistema Acadêmico de Gestão de Alunos e Desempenho — Faculdade Horizonte do Saber (Grupo 4)",
+  "private": true,
+  "scripts": {
+    "seed": "node scripts/gerar-seed.js",
+    "css": "tailwindcss -c tailwind.config.js -i css/input.css -o css/styles.css --minify",
+    "css:watch": "tailwindcss -c tailwind.config.js -i css/input.css -o css/styles.css --watch",
+    "build": "npm run seed && npm run css",
+    "start": "npx --yes serve . -l 5500"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.17"
+  }
+}
